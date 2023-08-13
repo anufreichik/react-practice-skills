@@ -1,30 +1,44 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import {store} from "../src/app/store";
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  BrowserRouter,
+} from "react-router-dom";
+import { store } from "../src/app/store";
+import { Provider } from "react-redux";
+import PostsList from "./features/posts/PostsList";
+import Counter from "./features/counter/Counter";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 const router = createBrowserRouter([
   {
     path: "/",
     element: <div>Hello world!</div>,
   },
+  {
+    path: "/posts",
+    element: <PostsList />,
+  },
+  {
+    path: "/counter",
+    element: <Counter />,
+  },
 ]);
-
 
 root.render(
   <React.StrictMode>
-     <RouterProvider router={router}  />
-     <Provider store={store}>
-     <App />
-     </Provider>
-     
+    <Provider store={store}>
+      {/* <RouterProvider router={router} /> */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
